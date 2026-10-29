@@ -1,0 +1,66 @@
+{
+  "folder": "C:\\Users\\Shara\\Documents\\PROJECTS\\AFK_JOB\\cloudflare-pages",
+  "sourceUnchanged": true,
+  "files": [
+    {
+      "file": "index.html",
+      "bytes": 46240,
+      "sha256": "68ddd33e0daced3591f4854bf354f41359ac01655d7d039989e9bf028c3631e1"
+    },
+    {
+      "file": "404.html",
+      "bytes": 571,
+      "sha256": "88305bedb2f9f6e3a51228c0c19e8d136203844cd9f6733abf64ebb067373e72"
+    },
+    {
+      "file": "favicon.svg",
+      "bytes": 200,
+      "sha256": "eddc9796d1b43c40a983029d0153cda35d8fed88ec82d3f0986b816c63ca640d"
+    },
+    {
+      "file": "site.webmanifest",
+      "bytes": 234,
+      "sha256": "87b1645c0397944618201b3580dd2747df3cee1e91fa6d9ece210abda0501b3c"
+    },
+    {
+      "file": "robots.txt",
+      "bytes": 104,
+      "sha256": "9b1ae62693d2188e1ab02f28a4a11edf7b376e9000cc646f6e82dd94ecc28fc7"
+    },
+    {
+      "file": "sitemap.xml",
+      "bytes": 202,
+      "sha256": "83178e05fae9b9f8e51650aa12aada3ac30d2022bdcbb420910f218ed3fe0bda"
+    },
+    {
+      "file": "_headers",
+      "bytes": 452,
+      "sha256": "d4c50e6af9477ede7164829bb7dc0fe6b0bec631c6eff967d9455f3848e61219"
+    },
+    {
+      "file": "assets/css/main.css",
+      "bytes": 19352,
+      "sha256": "bdf643e6bc430f10916e623b1ab1c65649b00b8b73652772c5095c9b09169c74"
+    },
+    {
+      "file": "assets/js/data.js",
+      "bytes": 19490,
+      "sha256": "09e0c7197fa99380cd4287df9c0154e151d825f159b1a5768af34bb110d286bd"
+    },
+    {
+      "file": "assets/js/app.js",
+      "bytes": 17040,
+      "sha256": "361fcac785b5ec2fc1a8ffd0001ea166a83c209b76a1c9876174d97d680c9091"
+    },
+    {
+      "file": "assets/img/og.png",
+      "bytes": 24266,
+      "sha256": "93d6bf8426ae2171437ce3773dc81127e6053421dbc0bf125b98ef7514e205d7"
+    }
+  ],
+  "excluded": [
+    "assets/fonts/README.md",
+    "assets/img/README.md",
+    "README.md"
+  ]
+}

@@ -1,0 +1,62 @@
+/* Dependency-free browser checks using Chromium's DevTools protocol and Node WebSocket. */
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const root=path.resolve(__dirname,'../..');
+const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+(async()=>{
+ const targets=await(await fetch('http://127.0.0.1:9222/json')).json();
+ const target=targets.find(t=>t.type==='page');if(!target)throw Error('No Chromium page');
+ const ws=new WebSocket(target.webSocketDebuggerUrl);await new Promise(r=>ws.addEventListener('open',r,{once:true}));
+ let seq=0;const pending=new Map(),errors=[],badResources=[],external=[];
+ ws.addEventListener('message',e=>{const m=JSON.parse(e.data);if(m.id){const p=pending.get(m.id);pending.delete(m.id);if(m.error)p.reject(Error(JSON.stringify(m.error)));else p.resolve(m.result);}else if(m.method==='Runtime.exceptionThrown')errors.push(m.params.exceptionDetails);else if(m.method==='Log.entryAdded'&&['warning','error'].includes(m.params.entry.level))errors.push(m.params.entry);else if(m.method==='Network.responseReceived'&&m.params.response.status>=400)badResources.push(m.params.response.url);else if(m.method==='Network.requestWillBeSent'&&!/^(http:\/\/127\.0\.0\.1:8080|file:|data:)/.test(m.params.request.url))external.push(m.params.request.url);});
+ const send=(method,params={})=>new Promise((resolve,reject)=>{const id=++seq;pending.set(id,{resolve,reject});ws.send(JSON.stringify({id,method,params}));});
+ const evaluate=async expression=>{const r=await send('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});if(r.exceptionDetails)throw Error(JSON.stringify(r.exceptionDetails));return r.result.value;};
+ const click=selector=>evaluate(`document.querySelector(${JSON.stringify(selector)}).click()`);
+ await send('Page.enable');await send('Runtime.enable');await send('Log.clear');await send('Log.enable');await send('Network.enable');errors.length=0;
+ await send('Page.navigate',{url:'http://127.0.0.1:8080/'});await sleep(700);
+ assert.equal(await evaluate('document.querySelectorAll("main section").length'),4);
+ assert.equal(await evaluate('document.querySelectorAll(".service-card").length'),11);
+ assert.equal(await evaluate('document.querySelectorAll("#prices,#schedule,#team,#booking-dialog,[data-price-link],#cart-items").length'),0);
+ assert((await evaluate('document.querySelector(".demo-badge").textContent')).includes('Предварительная версия'));
+ assert.equal(await evaluate('[...document.querySelectorAll("a[href^=\\"#\\"]")].filter(a=>a.hash && !document.getElementById(a.hash.slice(1))).length'),0);
+ assert.equal(await evaluate('document.body.textContent.includes("₸")'),false);
+ assert.equal(await evaluate('window.AZIFIT'),undefined);
+ fs.mkdirSync(path.join(root,'tools/cloudflare-demo-qa/screens'),{recursive:true});
+ for(const width of [360,390,430,768,1024,1440]){
+   await send('Emulation.setDeviceMetricsOverride',{width,height:1000,deviceScaleFactor:1,mobile:width<768});
+   await evaluate('scrollTo(0,0)');await sleep(600);
+   const dimensions=await evaluate('({width:innerWidth,scroll:document.documentElement.scrollWidth})');
+   assert(dimensions.scroll<=dimensions.width,JSON.stringify(dimensions));
+   const shot=await send('Page.captureScreenshot',{format:'png'});
+   fs.writeFileSync(path.join(root,`tools/cloudflare-demo-qa/screens/${width}.png`),Buffer.from(shot.data,'base64'));
+   console.log(`PASS viewport ${width}: scrollWidth=${dimensions.scroll}`);
+ }
+ await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
+ await click('.menu-toggle');assert(await evaluate('document.querySelector("#menu-dialog").open'));
+ await evaluate('document.querySelector("#menu-dialog button").focus()');
+ await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Tab',code:'Tab',modifiers:8,windowsVirtualKeyCode:9});
+ assert.equal(await evaluate('document.activeElement.hash'),'#contacts');
+ await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
+ await send('Input.dispatchKeyEvent',{type:'keyUp',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});await sleep(100);
+ assert(!await evaluate('document.querySelector("#menu-dialog").open'));
+ assert(await evaluate('document.activeElement===document.querySelector(".menu-toggle")'));
+ await click('.menu-toggle');await click('#menu-dialog a[href="#kids"]');await sleep(700);
+ assert.equal(await evaluate('location.hash'),'#kids');assert(!await evaluate('document.querySelector("#menu-dialog").open'));
+ await click('.service-card a');await sleep(800);assert.equal(await evaluate('location.hash'),'#contacts');
+ assert.equal(await evaluate('document.querySelector(".header-book").href'),'https://wa.me/77007194746');
+ assert.equal(await evaluate('document.querySelectorAll(".reveal.pending").length>=0'),true);
+ for(const id of ['women','kids','contacts']){await evaluate(`document.getElementById('${id}').scrollIntoView()`);await sleep(850);}
+ const contactShot=await send('Page.captureScreenshot',{format:'png'});fs.writeFileSync(path.join(root,'tools/cloudflare-demo-qa/screens/contacts.png'),Buffer.from(contactShot.data,'base64'));
+ await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});
+ assert.equal(await evaluate('getComputedStyle(document.querySelector(".entry")).transitionDuration'),'0s');
+ await send('Emulation.setScriptExecutionDisabled',{value:true});await send('Page.reload');await sleep(500);
+ assert(await evaluate('document.querySelector("#women").getBoundingClientRect().height>0'));
+ assert.equal(await evaluate('document.querySelectorAll(".service-card").length'),11);
+ await send('Emulation.setScriptExecutionDisabled',{value:false});
+ await send('Page.navigate',{url:'file:///'+path.join(root,'cloudflare-demo/index.html').replace(/\\/g,'/')});await sleep(700);
+ assert(await evaluate('document.documentElement.classList.contains("enhanced")'));
+ assert.deepEqual(errors,[]);assert.deepEqual(badResources,[]);assert.deepEqual(external,[]);
+ console.log('PASS: 4 sections, 11 services, demo label, valid anchors, no price data/cart, mobile menu, focus trap, Esc, contact links, reduced motion, no-JS and file://.');
+ console.log('PASS: no console warnings/errors, resource failures or external requests; CSP enabled.');
+ fs.writeFileSync(path.join(root,'tools/cloudflare-demo-qa/results.json'),JSON.stringify({passed:true,widths:[360,390,430,768,1024,1440],errors,badResources,external},null,2));
+ await send('Browser.close');ws.close();
+})().catch(e=>{console.error(e);process.exitCode=1;setTimeout(()=>process.exit(1),50);});

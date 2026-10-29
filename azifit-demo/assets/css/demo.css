@@ -1,0 +1,7 @@
+/* Preserve the original design system; only demo-specific presentation. */
+.demo-badge{display:inline-flex;align-items:center;gap:9px;margin:23px 0 0;padding:8px 14px;border:1px solid var(--line);border-radius:100px;color:var(--taupe-text);font-size:11px;letter-spacing:.04em;line-height:1.5}
+.demo-badge>span{width:5px;height:5px;border-radius:50%;background:var(--taupe-text)}
+.hero-heading{padding-top:20px}
+.service-card>a{font-size:23px;width:44px;height:44px;border:1px solid var(--taupe);border-radius:50%}
+.hero-bottom>a{display:flex;align-items:center;min-height:44px}
+@media(min-width:1024px){.hero-heading{padding-top:24px}.desktop-nav{gap:32px}.hero{padding-top:30px}.demo-badge{margin-top:18px}}

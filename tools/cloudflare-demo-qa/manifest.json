@@ -1,0 +1,74 @@
+{
+  "sources": {
+    "public": {
+      "404.html": "88305bedb2f9f6e3a51228c0c19e8d136203844cd9f6733abf64ebb067373e72",
+      "favicon.svg": "eddc9796d1b43c40a983029d0153cda35d8fed88ec82d3f0986b816c63ca640d",
+      "index.html": "68ddd33e0daced3591f4854bf354f41359ac01655d7d039989e9bf028c3631e1",
+      "README.md": "a01b6c995f87cf70b453f35e26e5a73c2eb93b5d0e7b6eb6c1f4d68e39dc3091",
+      "robots.txt": "9b1ae62693d2188e1ab02f28a4a11edf7b376e9000cc646f6e82dd94ecc28fc7",
+      "site.webmanifest": "87b1645c0397944618201b3580dd2747df3cee1e91fa6d9ece210abda0501b3c",
+      "sitemap.xml": "83178e05fae9b9f8e51650aa12aada3ac30d2022bdcbb420910f218ed3fe0bda",
+      "_headers": "d4c50e6af9477ede7164829bb7dc0fe6b0bec631c6eff967d9455f3848e61219",
+      "assets/css/main.css": "bdf643e6bc430f10916e623b1ab1c65649b00b8b73652772c5095c9b09169c74",
+      "assets/fonts/README.md": "b23f9e17c4b6f0a34b4f98133ffb96f3ac95440923274f0f75aa81228039ca6d",
+      "assets/img/og.png": "93d6bf8426ae2171437ce3773dc81127e6053421dbc0bf125b98ef7514e205d7",
+      "assets/img/README.md": "a8594c7a8d09d9c1992d7c0807f9cf12070e80dd31765ac3d2112267203b56a5",
+      "assets/js/app.js": "361fcac785b5ec2fc1a8ffd0001ea166a83c209b76a1c9876174d97d680c9091",
+      "assets/js/data.js": "09e0c7197fa99380cd4287df9c0154e151d825f159b1a5768af34bb110d286bd"
+    },
+    "azifit-full": {
+      "404.html": "88305bedb2f9f6e3a51228c0c19e8d136203844cd9f6733abf64ebb067373e72",
+      "favicon.svg": "eddc9796d1b43c40a983029d0153cda35d8fed88ec82d3f0986b816c63ca640d",
+      "index.html": "68ddd33e0daced3591f4854bf354f41359ac01655d7d039989e9bf028c3631e1",
+      "README.md": "a01b6c995f87cf70b453f35e26e5a73c2eb93b5d0e7b6eb6c1f4d68e39dc3091",
+      "robots.txt": "9b1ae62693d2188e1ab02f28a4a11edf7b376e9000cc646f6e82dd94ecc28fc7",
+      "site.webmanifest": "87b1645c0397944618201b3580dd2747df3cee1e91fa6d9ece210abda0501b3c",
+      "sitemap.xml": "83178e05fae9b9f8e51650aa12aada3ac30d2022bdcbb420910f218ed3fe0bda",
+      "_headers": "d4c50e6af9477ede7164829bb7dc0fe6b0bec631c6eff967d9455f3848e61219",
+      "assets/css/main.css": "bdf643e6bc430f10916e623b1ab1c65649b00b8b73652772c5095c9b09169c74",
+      "assets/fonts/README.md": "b23f9e17c4b6f0a34b4f98133ffb96f3ac95440923274f0f75aa81228039ca6d",
+      "assets/img/og.png": "93d6bf8426ae2171437ce3773dc81127e6053421dbc0bf125b98ef7514e205d7",
+      "assets/img/README.md": "a8594c7a8d09d9c1992d7c0807f9cf12070e80dd31765ac3d2112267203b56a5",
+      "assets/js/app.js": "361fcac785b5ec2fc1a8ffd0001ea166a83c209b76a1c9876174d97d680c9091",
+      "assets/js/data.js": "09e0c7197fa99380cd4287df9c0154e151d825f159b1a5768af34bb110d286bd"
+    },
+    "azifit-demo": {
+      "404.html": "88305bedb2f9f6e3a51228c0c19e8d136203844cd9f6733abf64ebb067373e72",
+      "favicon.svg": "eddc9796d1b43c40a983029d0153cda35d8fed88ec82d3f0986b816c63ca640d",
+      "index.html": "f8cda8c3e3b0cd675a5325a3d138b14e54688a4144e49da27536c904860a5d80",
+      "robots.txt": "a8f31103361fca68bef71fc69cff844b7c23bd3d64d2b872d74690cbda656bfc",
+      "site.webmanifest": "87b1645c0397944618201b3580dd2747df3cee1e91fa6d9ece210abda0501b3c",
+      "_headers": "d4c50e6af9477ede7164829bb7dc0fe6b0bec631c6eff967d9455f3848e61219",
+      "assets/css/demo.css": "10606f65fdc46cce957566de2104926eb69c473adb2ca36daeda1a0afd1d8121",
+      "assets/css/main.css": "bdf643e6bc430f10916e623b1ab1c65649b00b8b73652772c5095c9b09169c74",
+      "assets/img/og.png": "93d6bf8426ae2171437ce3773dc81127e6053421dbc0bf125b98ef7514e205d7",
+      "assets/js/demo.js": "5c3da4a5198cf19a01a95ee8b37caa159fdf9e14d7240342a57a1aaa1257320b"
+    },
+    "cloudflare-pages": {
+      "404.html": "88305bedb2f9f6e3a51228c0c19e8d136203844cd9f6733abf64ebb067373e72",
+      "favicon.svg": "eddc9796d1b43c40a983029d0153cda35d8fed88ec82d3f0986b816c63ca640d",
+      "index.html": "68ddd33e0daced3591f4854bf354f41359ac01655d7d039989e9bf028c3631e1",
+      "robots.txt": "9b1ae62693d2188e1ab02f28a4a11edf7b376e9000cc646f6e82dd94ecc28fc7",
+      "site.webmanifest": "87b1645c0397944618201b3580dd2747df3cee1e91fa6d9ece210abda0501b3c",
+      "sitemap.xml": "83178e05fae9b9f8e51650aa12aada3ac30d2022bdcbb420910f218ed3fe0bda",
+      "_headers": "d4c50e6af9477ede7164829bb7dc0fe6b0bec631c6eff967d9455f3848e61219",
+      "assets/css/main.css": "bdf643e6bc430f10916e623b1ab1c65649b00b8b73652772c5095c9b09169c74",
+      "assets/img/og.png": "93d6bf8426ae2171437ce3773dc81127e6053421dbc0bf125b98ef7514e205d7",
+      "assets/js/app.js": "361fcac785b5ec2fc1a8ffd0001ea166a83c209b76a1c9876174d97d680c9091",
+      "assets/js/data.js": "09e0c7197fa99380cd4287df9c0154e151d825f159b1a5768af34bb110d286bd"
+    }
+  },
+  "files": {
+    "404.html": "88305bedb2f9f6e3a51228c0c19e8d136203844cd9f6733abf64ebb067373e72",
+    "favicon.svg": "eddc9796d1b43c40a983029d0153cda35d8fed88ec82d3f0986b816c63ca640d",
+    "index.html": "f8cda8c3e3b0cd675a5325a3d138b14e54688a4144e49da27536c904860a5d80",
+    "robots.txt": "a8f31103361fca68bef71fc69cff844b7c23bd3d64d2b872d74690cbda656bfc",
+    "site.webmanifest": "87b1645c0397944618201b3580dd2747df3cee1e91fa6d9ece210abda0501b3c",
+    "_headers": "d4c50e6af9477ede7164829bb7dc0fe6b0bec631c6eff967d9455f3848e61219",
+    "assets/css/demo.css": "10606f65fdc46cce957566de2104926eb69c473adb2ca36daeda1a0afd1d8121",
+    "assets/css/main.css": "bdf643e6bc430f10916e623b1ab1c65649b00b8b73652772c5095c9b09169c74",
+    "assets/img/og.png": "93d6bf8426ae2171437ce3773dc81127e6053421dbc0bf125b98ef7514e205d7",
+    "assets/js/demo.js": "5c3da4a5198cf19a01a95ee8b37caa159fdf9e14d7240342a57a1aaa1257320b"
+  },
+  "bytes": 60570
+}

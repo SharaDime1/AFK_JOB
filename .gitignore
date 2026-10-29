@@ -1,0 +1,30 @@
+# Local browser profiles contain cookies, credentials and browsing data.
+**/chrome-profile/
+
+# Secrets and local credentials
+.env
+.env.*
+*.env
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+credentials.json
+credentials*.json
+secrets.json
+secrets*.json
+.npmrc
+.pypirc
+.netrc
+.aws/
+.ssh/
+
+# Dependencies, caches and local logs
+node_modules/
+__pycache__/
+*.pyc
+*.log
+.DS_Store
+Thumbs.db

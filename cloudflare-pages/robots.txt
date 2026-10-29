@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+# TODO(owner): Set SITE.url and run node tools/prepare-static.js to add Sitemap.
